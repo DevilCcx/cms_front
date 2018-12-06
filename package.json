@@ -1,0 +1,61 @@
+{
+  "name": "cms_front",
+  "version": "1.0.0",
+  "description": "cms_front",
+  "main": "index.js",
+  "author": "GuoFang1994 <13659215849@163.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "watch": "yarn run babel && webpack-dev-server --open",
+    "dev": "webpack-dev-server --open",
+    "babel": "babel http -d app",
+    "server": "yarn run babel && yarn run build && nodemon app/app.js",
+    "app": "yarn run babel && nodemon app/app.js"
+  },
+  "keywords": [
+    "cms"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DevilCcx/blog_cms.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DevilCcx/blog_cms/issues"
+  },
+  "homepage": "https://github.com/DevilCcx/cms_front#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "element-ui": "^2.4.11",
+    "fuse.js": "^3.3.0",
+    "mavon-editor": "^2.6.17",
+    "moment": "^2.22.2",
+    "node-sass": "^4.10.0",
+    "sass-loader": "^7.1.0",
+    "vue": "^2.5.17",
+    "vue-axios": "^2.1.4",
+    "vue-router": "^3.0.2",
+    "vuex": "^3.0.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "7",
+    "babel-plugin-component": "^1.1.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
+    "clean-webpack-plugin": "^1.0.0",
+    "css-loader": "^1.0.1",
+    "file-loader": "^2.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "particles.js": "^2.0.0",
+    "style-loader": "^0.23.1",
+    "vue-loader": "^15.4.2",
+    "vue-template-compiler": "^2.5.17",
+    "webpack": "^4.25.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
+  }
+}

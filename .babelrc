@@ -1,0 +1,16 @@
+{
+  "presets": ["env"],
+  "plugins": [
+    ["transform-object-rest-spread"],//对象展开符插件
+    [
+      "transform-runtime"
+    ],
+    [
+      "component",
+      {
+        "libraryName": "element-ui",
+        "styleLibraryName": "theme-chalk"
+      }
+    ]
+  ]
+}
