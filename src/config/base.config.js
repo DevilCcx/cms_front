@@ -136,8 +136,20 @@ const fileConfig = {
     article_draft_dir: '/Users/devil/docker/wwwroot/blog/source/_drafts',
 };
 
+const fuseConfig = {
+    caseSensitive: false,
+        shouldSort: true,
+        threshold: 0.6,
+        location: 0,
+        distance: 100,
+        maxPatternLength: 32,
+        minMatchCharLength: 1,
+        keys: []
+};
+
 export {
     axiosConfig,
     particlesConfig,
-    fileConfig
+    fileConfig,
+    fuseConfig
 }

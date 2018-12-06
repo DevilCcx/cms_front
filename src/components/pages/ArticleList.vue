@@ -73,7 +73,7 @@
     import {fileConfig} from '../../config/base.config.js'
     import paginator from '../layouts/paginator.vue';
     import {mapActions} from 'vuex';
-    import fusearch from '../../../http/tool/Fuse.js';
+    import fusearch from '../../tool/Fuse.js';
     import { Message } from 'element-ui';
     export default {
         name: "article-list",
