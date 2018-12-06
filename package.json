@@ -8,11 +8,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "watch": "yarn run babel && webpack-dev-server --open",
-    "dev": "webpack-dev-server --open",
-    "babel": "babel http -d app",
-    "server": "yarn run babel && yarn run build && nodemon app/app.js",
-    "app": "yarn run babel && nodemon app/app.js"
+    "watch": "webpack-dev-server --open",
+    "dev": "webpack-dev-server --open"
   },
   "keywords": [
     "cms"
