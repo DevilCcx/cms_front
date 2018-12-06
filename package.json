@@ -16,10 +16,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DevilCcx/blog_cms.git"
+    "url": "git+https://github.com/DevilCcx/blog_front.git"
   },
   "bugs": {
-    "url": "https://github.com/DevilCcx/blog_cms/issues"
+    "url": "https://github.com/DevilCcx/blog_front/issues"
   },
   "homepage": "https://github.com/DevilCcx/cms_front#readme",
   "dependencies": {
