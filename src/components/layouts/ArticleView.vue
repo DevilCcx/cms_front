@@ -50,6 +50,7 @@
                                 showClose: true,
                                 message: '保存成功'
                             });
+                            this.$router.push({path: 'list'})
                         }
                     }
                 ).catch(

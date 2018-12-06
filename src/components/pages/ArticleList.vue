@@ -74,7 +74,7 @@
     import paginator from '../layouts/paginator.vue';
     import {mapActions} from 'vuex';
     import fusearch from '../../tool/Fuse.js';
-    import { Message } from 'element-ui';
+    import {Loading, Message } from 'element-ui';
     export default {
         name: "article-list",
         components: {paginator},
@@ -165,20 +165,28 @@
 
             //发布文章
             deploy() {
+                const loading = this.$loading({
+                    lock: true,
+                    text: 'deploying',
+                    spinner: 'el-icon-loading',
+                    background: 'rgba(0, 0, 0, 0.7)'
+                });
                 let params = {
                     workDir: fileConfig.blog_dir
                 };
                 this.$api.deploy(params).then(
                     response => {
                         if (0 === response.code) {
+                            loading.close();
                             Message.success({
                                 showClose: true,
-                                message: '发布'
+                                message: '发布成功'
                             });
                         }
                     }
                 ).catch(
                     err => {
+                        loading.close();
                         console.log(err);
                     }
                 );
