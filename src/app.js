@@ -76,7 +76,6 @@ Vue.use(mavonEditor);
 Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
 
-
 Vue.prototype.$loading = Loading.service;
 
 import Api from './http/index.js'

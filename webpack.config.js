@@ -1,17 +1,34 @@
-const isDev = process.env.NODE_ENV === 'development';
 const path = require('path');
-let root = path.resolve(__dirname, '.');
 
+const Webpack = require('webpack');
+
+//压缩css
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
+//美化css
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+
+//html模版
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+//清理dist
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 //打包块分析
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const {VueLoaderPlugin} = require('vue-loader');
+
+//丑化代码，压缩js
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
+//构建加速
 const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
+
+//内联runtime.js，减少Http请求
+const InlineManifestWebpackPlugin = require('inline-manifest-webpack-plugin');
+
+let root = path.resolve(__dirname, '.');
+const isDev = process.env.NODE_ENV === 'development';
 
 let config = {
     //入口
@@ -71,7 +88,7 @@ let config = {
 //优化
 let optimization = {
     minimizer: [new OptimizeCssAssetsPlugin()],
-        runtimeChunk: {
+    runtimeChunk: {
         name: "manifest"
     },
     //提取公共模块，webpack4去除了CommonsChunkPlugin，使用SplitChunksPlugin作为替代
@@ -129,9 +146,9 @@ if (!isDev) {
                 },
                 'css-loader',
                 'postcss-loader',
-                'sass-loader',
-            ],
-        },
+                'sass-loader'
+            ]
+        }
     );
 
     config.optimization = optimization;
@@ -143,10 +160,17 @@ if (!isDev) {
         new MiniCssExtractPlugin({
             filename: 'css/main.css',
         }),
+        new InlineManifestWebpackPlugin('manifest'),
+        //固定moduleID
+        new Webpack.HashedModuleIdsPlugin(),
+        new Webpack.NamedChunksPlugin()
     )
 } else {
     config.mode = 'development';
-
+    config.output = {
+        filename: "[name].[hash].js",
+        path: path.resolve(__dirname, 'dist')
+    };
     config.module.rules.push(
         {
             test: /\.(sa|sc|c)ss$/,
@@ -154,9 +178,9 @@ if (!isDev) {
                 'style-loader',
                 'css-loader',
                 'postcss-loader',
-                'sass-loader',
-            ],
-        },
+                'sass-loader'
+            ]
+        }
     );
 }
 
