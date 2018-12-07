@@ -1,7 +1,7 @@
 const axiosConfig = {
     method: 'post',
     // 基础url前缀
-    baseURL: 'http://localhost:3000',
+    baseURL: 'http://api.36mem.com',
     // 请求头信息
     headers: {
         'Content-Type':'application/json;charset=UTF-8'
