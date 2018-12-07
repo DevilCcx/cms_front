@@ -1,7 +1,14 @@
-import axios from 'axios' // 注意先安装哦
-import {axiosConfig} from '../config/base.config.js' // 导入默认配置
-import qs from 'qs' // 序列化请求数据
-import {Message} from 'element-ui'; //错误提示
+import axios from 'axios';
+
+// 导入默认配置
+import {axiosConfig} from '../config/base.config.js';
+
+// 序列化请求数据
+import qs from 'qs';
+
+//错误提示
+import {Message} from 'element-ui';
+
 
 export default function $axios (options) {
     return new Promise((resolve, reject) => {
@@ -11,11 +18,12 @@ export default function $axios (options) {
             transformResponse: [function (data) {}]
         };
 
-        //登陆不需要token
-        if (options.url !== 'api/auth/login') {
+        // 登陆不需要token
+        if (options.url !== 'auth/login') {
             let auth = localStorage.getItem('auth');
             if (auth) {
-                body.headers.Authorization = 'Bearer ' + JSON.parse(auth).accessToken;
+                let accessToken = JSON.parse(auth).accessToken;
+                body.headers.Authorization = 'Bearer ' + accessToken;
             }
         }
 
@@ -81,6 +89,7 @@ export default function $axios (options) {
                 } else{
                     data = response.data
                 }
+
                 //后端接口返回code约定
                 if (0 !== data.code) {
                     throw {message: data.msg};
@@ -93,7 +102,6 @@ export default function $axios (options) {
                         case 400:
                             err.message = '请求错误';
                             break;
-
                         case 401:
                             err.message = '未授权，请登录';
                             localStorage.removeItem('auth');

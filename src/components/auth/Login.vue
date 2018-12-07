@@ -19,6 +19,7 @@
 
 <script>
     import {particlesConfig} from '../../config/base.config';
+    import {mapActions} from 'vuex';
     export default {
         name: 'Login',
         data() {
@@ -64,12 +65,13 @@
                         let loginParams = { name: this.ruleForm.name, password: this.ruleForm.pwd };
                         _this.$api.login(loginParams).then(
                             (response) => {
-                                localStorage.setItem('auth', JSON.stringify({
+                                let auth = {
                                     accessToken: response.data.access_token,
-                                    user: response.data.user
-                                }));
+                                    name: this.ruleForm.name
+                                };
+                                this.setAuth({amount: auth});
                                 this.$router.push({
-                                    path: '/app/userList'
+                                    path: '/article/list'
                                 })
                             }
                         ).catch(
@@ -82,14 +84,14 @@
                         return false;
                     }
                 });
-            }
+            },
+            ...mapActions({
+                setAuth: 'auth/setAuth'
+            })
         }
 
     }
 </script>
-<!--margin: 180px auto;-->
-<!--width: 350px;-->
-<!--padding: 35px 35px 15px 35px;-->
 
 <style lang="scss" scoped>
     #login {
@@ -104,7 +106,7 @@
         left: 50%;
         top: 50%;
         margin-left: -175px;
-        margin-top: -175px;
+        margin-top: -275px;
         padding: 35px 35px 15px 35px;
 
         -webkit-border-radius: 5px;

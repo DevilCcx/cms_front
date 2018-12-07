@@ -6,7 +6,7 @@ import axios from './api';
 //用户登陆
 export const login = (params) => {
     return axios({
-        url: 'api/auth/login',
+        url: 'auth/login',
         method: 'post',
         params
     });

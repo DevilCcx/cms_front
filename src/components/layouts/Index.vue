@@ -48,8 +48,8 @@
         </el-menu>
         <el-container>
             <el-header class="container__header">
-                <el-dropdown class="el-header__dropdown">
-                        <span class="el-dropdown-link">admin
+                <el-dropdown class="el-header__dropdown" @command="handleCommand">
+                        <span class="el-dropdown-link">{{this.getName}}
                             <i class="el-icon-arrow-down el-icon--right"></i>
                         </span>
                     <el-dropdown-menu slot="dropdown">
@@ -67,12 +67,19 @@
 </template>
 
 <script>
+    import {mapGetters, mapActions} from 'vuex';
     export default {
         name: "Index",
         data() {
             return {
                 isCollapse:false
             }
+        },
+        computed: {
+            ...mapGetters({
+                getName: 'auth/getName',
+                getAccessToken: 'auth/getAccessToken'
+            })
         },
         methods: {
             handleOpen(key, keyPath) {
@@ -85,7 +92,27 @@
                 if (10 == key) {
                     this.isCollapse = !this.isCollapse;
                 }
-            }
+            },
+            handleCommand(command) {
+                switch(command) {
+                    case 'logout': {
+                        this.logout();
+                        this.$router.push({
+                            name: 'login'
+                        });
+                        break;
+                    }
+                    case 'a': {
+                        break;
+                    }
+                    case 'b': {
+                        break;
+                    }
+                }
+            },
+            ...mapActions({
+                logout: 'auth/clearAuth'
+            })
         }
     }
 </script>

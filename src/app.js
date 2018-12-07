@@ -36,6 +36,9 @@ import {
     TableColumn,
     Alert,
     Row,
+    Form,
+    FormItem,
+    Checkbox,
     Icon,
     Col,
     Collapse,
@@ -61,6 +64,9 @@ Vue.use(Input);
 Vue.use(Loading);
 Vue.use(Button);
 Vue.use(Table);
+Vue.use(Form);
+Vue.use(FormItem);
+Vue.use(Checkbox);
 Vue.use(TableColumn);
 Vue.use(Alert);
 Vue.use(Row);

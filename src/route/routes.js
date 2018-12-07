@@ -24,9 +24,9 @@ export default [
         path: '/',
         redirect: '/article/list',
         meta: [],
-        // beforeEnter: (to, from, next) => {
-        //     _beforeEnter(to, from, '/app/userList', next);
-        // }
+        beforeEnter: (to, from, next) => {
+            _beforeEnter(to, from, '/article/list', next);
+        }
     },
     {
         path: '/login',
@@ -38,11 +38,11 @@ export default [
             if (null === auth) {
                 next();
             } else {
-                //默认跳转到用户列表，如果有上一页则跳转到上一页
+                //默认跳转到文章列表，如果有上一页则跳转到上一页
                 if (from.fullPath !== '/' && from.fullPath !== '/login') {
                     next(from.fullPath);
                 } else {
-                    next('/app/userList');
+                    next('/article/list');
                 }
             }
         }
@@ -55,22 +55,23 @@ export default [
             {
                 path: 'list',
                 name: '文章列表',
-                component: ArticleList
+                component: ArticleList,
+                beforeEnter: (to, from, next) => {
+                    _beforeEnter(to, from, null, next);
+                }
             },
             {
                 path: 'new',
                 name: '新建博文',
-                component: NewArticle
+                component: NewArticle,
+                beforeEnter: (to, from, next) => {
+                    _beforeEnter(to, from, null, next);
+                }
             },
             {
                 path: 'edit',
                 name: '编辑博文',
-                component: EditArticle
-            },
-
-            {
-                path: 'categoryList',
-                name: '类目列表',
+                component: EditArticle,
                 beforeEnter: (to, from, next) => {
                     _beforeEnter(to, from, null, next);
                 }
