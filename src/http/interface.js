@@ -57,11 +57,21 @@ export const deploy = params => {
     })
 };
 
+//图片存储
+export const saveImage = data => {
+    return axios({
+        url: 'image/save',
+        method: 'post',
+        data
+    })
+};
+
 export default {
     getArticleList,
     login,
     getArticle,
     writeArticle,
     deleteArticle,
-    deploy
+    deploy,
+    saveImage
 }

@@ -1,7 +1,8 @@
 const axiosConfig = {
     method: 'post',
     // 基础url前缀
-    baseURL: 'http://api.36mem.com',
+    // baseURL: 'http://api.36mem.com',
+    baseURL: 'http://localhost:3000',
     // 请求头信息
     headers: {
         'Content-Type':'application/json;charset=UTF-8'
@@ -131,12 +132,13 @@ const particlesConfig = {
 };
 
 const fileConfig = {
-    // blog_dir: '/Users/devil/docker/wwwroot/blog',
-    blog_dir: '/www/devil_blog',
-    // article_dir: '/Users/devil/docker/wwwroot/blog/source/_posts',
-    article_dir: '/www/devil_blog/source/_posts',
-    // article_draft_dir: '/Users/devil/docker/wwwroot/blog/source/_drafts',
-    article_draft_dir: '/www/devil_blog/source/_drafts'
+    blog_dir: '/Users/devil/docker/wwwroot/blog',
+    // blog_dir: '/www/devil_blog',
+    article_dir: '/Users/devil/docker/wwwroot/blog/source/_posts',
+    // article_dir: '/www/devil_blog/source/_posts',
+    article_draft_dir: '/Users/devil/docker/wwwroot/blog/source/_drafts',
+    // article_draft_dir: '/www/devil_blog/source/_drafts',
+    image_base_dir: '/Users/devil/docker/wwwroot/blog/source/images'
 };
 
 const fuseConfig = {

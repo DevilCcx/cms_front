@@ -7,13 +7,14 @@
                     clearable
             ></el-input>
         </el-header>
-        <mavon-editor v-model="content" @save="save"></mavon-editor>
+        <mavon-editor v-model="content" ref=md @save="save" @imgAdd="imgAdd"></mavon-editor>
     </div>
 </template>
 
 <script>
     import { Message } from 'element-ui';
     import {mapActions, mapGetters} from 'vuex';
+    import {fileConfig, axiosConfig} from "../../config/base.config";
     export default {
         name: "article-view",
         data () {
@@ -33,6 +34,32 @@
             })
         },
         methods: {
+            //添加图片
+            imgAdd(pos, file) {
+                let _this = this;
+
+                let params = {
+                    path: fileConfig.image_base_dir,
+                    name: file.name,
+                    dataBuffer: file.miniurl
+                };
+                _this.$api.saveImage(params).then(
+                    response => {
+                        if (0 === response.code) {
+                            _this.$refs.md.$img2Url(pos, axiosConfig.baseURL + '/' + params.name);
+                            Message.success({
+                                showClose: true,
+                                message: '保存成功'
+                            });
+                        }
+                    }
+                ).catch(
+                    err => {
+                        console.log(err);
+                    }
+                )
+            },
+
             //博文保存
             save(value, render) {
                 this.setTitle({amount: this.title});
