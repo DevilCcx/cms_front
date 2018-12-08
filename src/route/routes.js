@@ -22,7 +22,7 @@ const _beforeEnter = (to, from, redirect, next) => {
 export default [
     {
         path: '/',
-        redirect: '/article/list',
+        redirect: '/login',
         meta: [],
         beforeEnter: (to, from, next) => {
             _beforeEnter(to, from, '/article/list', next);
