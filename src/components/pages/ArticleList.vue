@@ -74,7 +74,7 @@
     import paginator from '../layouts/paginator.vue';
     import {mapActions} from 'vuex';
     import fusearch from '../../tool/Fuse.js';
-    import {Loading, Message } from 'element-ui';
+    import { Message } from 'element-ui';
     export default {
         name: "article-list",
         components: {paginator},
@@ -102,7 +102,8 @@
                         amount: res
                     });
                 } else {
-                    this.$api.getArticleList({}).then(
+                    let path = fileConfig.article_dir;
+                    this.$api.getArticleList({path: path}).then(
                         response => {
                             //设置搜索后的数据
                             this.setArticleList({
