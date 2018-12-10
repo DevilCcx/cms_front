@@ -15,6 +15,9 @@
 
             //设置保存地址
             this.setPath({amount: fileConfig.article_dir});
+
+            //设置hexo 文章头部
+            this.setContent({amount: fileConfig.article_header})
         },
         data () {
             return {
@@ -24,7 +27,8 @@
         methods: {
             ...mapActions({
                 reset: 'mavon/reset',
-                setPath: 'mavon/setPath'
+                setPath: 'mavon/setPath',
+                setContent: 'mavon/setContent'
             })
         }
     }
