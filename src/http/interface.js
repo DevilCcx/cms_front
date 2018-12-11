@@ -31,11 +31,11 @@ export const getArticle = (params) => {
 };
 
 //新建
-export const writeArticle = (params) => {
+export const writeArticle = (data) => {
     return axios({
         url: 'article/new',
         method: 'post',
-        params
+        data
     })
 };
 
