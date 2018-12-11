@@ -69,6 +69,19 @@ let config = {
                     loader: 'file-loader'
                 }
             },
+            {
+                test: /\.(gif|png|jpe?g|svg)$/i,
+                use: [
+                    'file-loader',
+                    {
+                        loader: 'image-webpack-loader',
+                        options: {
+                            // bypassOnDebug: true, // webpack@1.x
+                            disable: true, // webpack@2.x and newer
+                        },
+                    },
+                ],
+            }
         ]
     },
 
@@ -77,6 +90,7 @@ let config = {
         new HtmlWebpackPlugin({
             title: 'Output Management',
             template: path.join(root, 'index.html'), // 模板文件
+            favicon: path.join(root, 'favicon.png'),
             inject: 'body' // js的script注入到body底部
         }),
         new CleanWebpackPlugin(['dist']),
