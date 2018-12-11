@@ -139,6 +139,7 @@ const fileConfig = {
     // article_draft_dir: '/Users/devil/docker/wwwroot/blog/source/_drafts',
     article_draft_dir: '/www/devil_blog/source/_drafts',
     // image_base_dir: '/Users/devil/docker/wwwroot/blog/source/images',
+    image_base_dir: '/www/devil_blog/source/images',
     article_header: "---\n" +
     "title: 文章标题\n" +
     "categories:\n" +
